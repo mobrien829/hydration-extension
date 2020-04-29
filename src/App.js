@@ -6,13 +6,7 @@ function App() {
   const [counter, setCounter] = useState(0);
 
   const waterStyle = {
-    color: "#23b5f4",
-    zIndex: "1",
-    position: "absolute",
-    width: "100%",
     height: `${53 * counter}px`,
-    bottom: "30px",
-    transition: "all 350ms ease",
   };
   return (
     <div className="App">
