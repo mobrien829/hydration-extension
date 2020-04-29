@@ -97,7 +97,7 @@
 }
 
 .glass .water {
-  background-color: #23b5f4;
+  background: #23b5f4;
   z-index: 0;
   position: absolute;
   width: 100%;
