@@ -50,9 +50,11 @@
     width: 300px;
     background-image: linear-gradient(to right, #f1f1f1, #ffffff, #f1f1f1);
     height: 450px;
+    z-index: 0;
     position: relative;
     overflow: hidden;
     border-radius: 3px;
+    z-index: 0;
     cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -62,7 +64,59 @@
     user-select: none;
 }
 
-.glass-counter {
+.glass:before, .glass:after {
+  content: ""; 
+  width: 0;
+  height: 0;
+  border-bottom: 450px solid #282c34;
+  position: absolute;
+  bottom: 0px;
+  z-index: 2
+}
+
+.glass:before {
+  left: 0px;
+  border-left: 0px solid transparent;
+  border-right: 50px solid transparent;
+}
+
+.glass:after {
+  right: 0px;
+  border-right: 0px solid transparent;
+  border-left: 50px solid transparent;
+}
+
+.glass .glass-edge {
+  position: absolute;
+  top: -5px;
+  left: -10px;
+  width: 110%;
+  height: 10px;
+  border-radius: 100%;
+  background: rgb(230, 229, 229)
+}
+
+.glass .water {
+  color: #23b5f4;
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  bottom: 30px;
+  transition: all 350ms ease;
+}
+
+.glass .glass-base {
+  width: 60%;
+  left: 60px;
+  height: 5px;
+  position: absolute;
+  bottom: 30px;
+  background: #eee;
+  border-radius: 100%;
+}
+
+.glass .glass-counter {
   z-index: 3;
   color: #000;
   position: relative;
