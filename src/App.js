@@ -54,7 +54,7 @@ function App() {
             <a className="credits" href="https://github.com/mobrien829">
               Michael O'Brien
             </a>{" "}
-            |
+            |{" "}
             <a
               className="credits"
               href="https://github.com/mobrien829/hydration-extension"
