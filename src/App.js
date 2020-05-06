@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
   const [counter, setCounter] = useState(0);
-  const [date, setDate] = useState("");
   const todaysDate = new Date().toDateString();
   const [localData, setLocalData] = useState();
 
@@ -21,7 +19,6 @@ function App() {
   checkLocal();
 
   const clickHelper = () => {
-    console.log("working");
     const data = { amount: counter + 1, todaysDate };
     setCounter(counter + 1);
     localStorage.setItem("waterGlass", JSON.stringify(data));
