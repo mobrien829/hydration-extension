@@ -50,6 +50,18 @@ function App() {
           <div className="reset-button" onClick={resetHandler}>
             Reset
           </div>
+          <div className="credits">
+            <a className="credits" href="https://github.com/mobrien829">
+              Michael O'Brien
+            </a>{" "}
+            |
+            <a
+              className="credits"
+              href="https://github.com/mobrien829/hydration-extension"
+            >
+              Github repo
+            </a>
+          </div>
         </div>
       </header>
     </div>
