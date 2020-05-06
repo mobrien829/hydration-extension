@@ -1,9 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
   const [counter, setCounter] = useState(0);
+  const [date, setDate] = useState("");
+  const todaysDate = new Date().toDateString();
+  const [localData, setLocalData] = useState();
+
+  const checkLocal = () => {
+    if (counter === 0) {
+      if (localStorage.getItem("waterGlass")) {
+        const dataCounter = JSON.parse(localStorage.getItem("waterGlass"))
+          .amount;
+        setCounter(dataCounter);
+      }
+    }
+  };
+
+  checkLocal();
+
+  const clickHelper = () => {
+    console.log("working");
+    const data = { amount: counter + 1, todaysDate };
+    setCounter(counter + 1);
+    localStorage.setItem("waterGlass", JSON.stringify(data));
+    setLocalData(JSON.parse(localStorage.getItem("waterGlass")));
+  };
+  const resetHandler = () => {
+    localStorage.removeItem("waterGlass");
+    setLocalData({});
+    setCounter(0);
+  };
 
   const waterStyle = {
     height: `${53 * counter}px`,
@@ -18,14 +46,11 @@ function App() {
             <div className="glass-edge"></div>
             <div className="glass-base"></div>
             <div className="water" style={waterStyle}></div>
-            <div
-              className="glass-counter"
-              onClick={() => setCounter(counter + 1)}
-            >
+            <div className="glass-counter" onClick={clickHelper}>
               {counter}
             </div>
           </div>
-          <div className="reset-button" onClick={() => setCounter(0)}>
+          <div className="reset-button" onClick={resetHandler}>
             Reset
           </div>
         </div>
