@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import DrinkTable from "./Table";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -19,7 +20,8 @@ function App() {
   checkLocal();
 
   const clickHelper = () => {
-    const data = { amount: counter + 1, todaysDate };
+    const time = new Date().toTimeString().slice(0, 5);
+    const data = { amount: counter + 1, todaysDate, time };
     setCounter(counter + 1);
     localStorage.setItem("waterGlass", JSON.stringify(data));
     setLocalData(JSON.parse(localStorage.getItem("waterGlass")));
@@ -63,6 +65,7 @@ function App() {
             </a>
           </div>
         </div>
+        <div className="time-list"></div>
       </header>
     </div>
   );
