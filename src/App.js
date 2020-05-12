@@ -6,6 +6,7 @@ function App() {
   const [counter, setCounter] = useState(0);
   const todaysDate = new Date().toDateString();
   const [localData, setLocalData] = useState();
+  const [timeObject, setTimeObject] = useState([]);
 
   const checkLocal = () => {
     if (counter === 0) {
@@ -13,6 +14,10 @@ function App() {
         const dataCounter = JSON.parse(localStorage.getItem("waterGlass"))
           .amount;
         setCounter(dataCounter);
+        const storageTime = JSON.parse(
+          localStorage.getItem("waterGlass").timeObject
+        );
+        setTimeObject(storageTime);
       }
     }
   };
@@ -21,7 +26,9 @@ function App() {
 
   const clickHelper = () => {
     const time = new Date().toTimeString().slice(0, 5);
-    const data = { amount: counter + 1, todaysDate, time };
+    const newTimeObject = [...timeObject, { glass: counter + 1, time }];
+    setTimeObject(newTimeObject);
+    const data = { amount: counter + 1, todaysDate, timeObject: newTimeObject };
     setCounter(counter + 1);
     localStorage.setItem("waterGlass", JSON.stringify(data));
     setLocalData(JSON.parse(localStorage.getItem("waterGlass")));
@@ -65,7 +72,9 @@ function App() {
             </a>
           </div>
         </div>
-        <div className="time-list"></div>
+        <div className="time-list">
+          <DrinkTable data={timeObject} />
+        </div>
       </header>
     </div>
   );

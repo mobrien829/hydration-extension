@@ -30,7 +30,7 @@ describe("glass fills", function () {
         expect(JSON.parse(localStorage.getItem("waterGlass"))).to.have.all.keys(
           "amount",
           "todaysDate",
-          "time"
+          "timeObject"
         );
       });
   });
