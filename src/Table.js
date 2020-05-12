@@ -4,9 +4,8 @@ import "./App.css";
 const Table = ({ data }) => {
   const mapData = (array) => {
     return array.map((glass) => {
-      console.log(glass);
       return (
-        <tr>
+        <tr key={glass.id}>
           <td className="col1">{glass.glass}</td>
           <td className="col2">{glass.time}</td>
         </tr>

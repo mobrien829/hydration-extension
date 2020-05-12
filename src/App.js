@@ -5,7 +5,6 @@ import DrinkTable from "./Table";
 function App() {
   const [counter, setCounter] = useState(0);
   const todaysDate = new Date().toDateString();
-  const [localData, setLocalData] = useState();
   const [timeObject, setTimeObject] = useState([]);
 
   const checkLocal = () => {
@@ -14,9 +13,8 @@ function App() {
         const dataCounter = JSON.parse(localStorage.getItem("waterGlass"))
           .amount;
         setCounter(dataCounter);
-        const storageTime = JSON.parse(
-          localStorage.getItem("waterGlass").timeObject
-        );
+        const storageTime = JSON.parse(localStorage.getItem("waterGlass"))
+          .timeObject;
         setTimeObject(storageTime);
       }
     }
@@ -26,16 +24,18 @@ function App() {
 
   const clickHelper = () => {
     const time = new Date().toTimeString().slice(0, 5);
-    const newTimeObject = [...timeObject, { glass: counter + 1, time }];
+    const newTimeObject = [
+      ...timeObject,
+      { glass: counter + 1, time, id: counter },
+    ];
     setTimeObject(newTimeObject);
     const data = { amount: counter + 1, todaysDate, timeObject: newTimeObject };
     setCounter(counter + 1);
     localStorage.setItem("waterGlass", JSON.stringify(data));
-    setLocalData(JSON.parse(localStorage.getItem("waterGlass")));
   };
   const resetHandler = () => {
     localStorage.removeItem("waterGlass");
-    setLocalData({});
+    setTimeObject([]);
     setCounter(0);
   };
 
